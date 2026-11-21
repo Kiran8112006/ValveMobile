@@ -1,0 +1,20 @@
+{
+  "indexes": [
+    { "collectionGroup": "customers", "fields": [{ "fieldPath": "profile.balanceMl", "mode": "ASC" }] },
+    { "collectionGroup": "customers", "fields": [{ "fieldPath": "profile.totalEstimatedDispensedMl", "mode": "ASC" }] },
+    { "collectionGroup": "customers", "fields": [{ "fieldPath": "lastSeenAt", "mode": "DESC" }] },
+    { "collectionGroup": "customers", "fields": [{ "fieldPath": "status", "mode": "ASC" }] },
+    { "collectionGroup": "customers", "fields": [{ "fieldPath": "createdAt", "mode": "DESC" }] },
+    { "collectionGroup": "transactions", "fields": [{ "fieldPath": "customerId", "mode": "ASC" }] },
+    { "collectionGroup": "transactions", "fields": [{ "fieldPath": "createdAt", "mode": "DESC" }] },
+    { "collectionGroup": "sessions", "fields": [{ "fieldPath": "customerId", "mode": "ASC" }] },
+    { "collectionGroup": "sessions", "fields": [{ "fieldPath": "sessionId", "mode": "ASC" }] },
+    { "collectionGroup": "sessions", "fields": [{ "fieldPath": "createdAt", "mode": "DESC" }] },
+    { "collectionGroup": "devices", "fields": [{ "fieldPath": "customerId", "mode": "ASC" }] },
+    { "collectionGroup": "devices", "fields": [{ "fieldPath": "status", "mode": "ASC" }] },
+    { "collectionGroup": "admin", "fields": [{ "fieldPath": "pricing.configured", "mode": "ASC" }] },
+    { "collectionGroup": "admin", "fields": [{ "fieldPath": "credits.customerId", "mode": "ASC" }] },
+    { "collectionGroup": "admin", "fields": [{ "fieldPath": "audit.timestamp", "mode": "DESC" }] }
+  ],
+  "queryScope": "COLLECTION"
+}

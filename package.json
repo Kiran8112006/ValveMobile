@@ -1,0 +1,20 @@
+{
+  "name": "valve",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Valve — prepaid water dispensing and solenoid valve control",
+  "scripts": {
+    "backend:dev": "npm --prefix apps/backend run dev",
+    "backend:build": "npm --prefix apps/backend run build",
+    "backend:start": "npm --prefix apps/backend run start",
+    "backend:test": "npm --prefix apps/backend run test",
+    "backend:lint": "npm --prefix apps/backend run lint",
+    "mobile:start": "npm --prefix apps/mobile run start",
+    "mobile:android": "npm --prefix apps/mobile run android",
+    "mobile:typecheck": "npm --prefix apps/mobile run typecheck",
+    "mobile:lint": "npm --prefix apps/mobile run lint",
+    "admin:promote": "node scripts/promote-admin.mjs",
+    "lint": "npm run backend:lint && npm run mobile:lint",
+    "test": "npm run backend:test"
+  }
+}

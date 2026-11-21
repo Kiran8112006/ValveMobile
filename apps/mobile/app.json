@@ -1,0 +1,49 @@
+{
+  "expo": {
+    "name": "Valve",
+    "slug": "valve",
+    "version": "1.0.0",
+    "scheme": "valve",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.valve.app",
+      "entitlements": {
+        "com.apple.developer.networking.HotspotConfiguration": true
+      },
+      "infoPlist": {
+        "NSLocalNetworkUsageDescription": "Valve connects to your device's temporary setup network so you can enter your Wi-Fi details.",
+        "NSAppTransportSecurity": {
+          "NSAllowsLocalNetworking": true
+        },
+        "LSApplicationQueriesSchemes": ["tez", "phonepe", "paytmmp"]
+      }
+    },
+    "android": {
+      "package": "com.valve.app",
+      "usesCleartextTraffic": true,
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "android.permission.INTERNET",
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.ACCESS_WIFI_STATE",
+        "android.permission.CHANGE_WIFI_STATE",
+        "android.permission.CHANGE_NETWORK_STATE",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.NEARBY_WIFI_DEVICES"
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Valve to scan the pairing QR code printed on your device."
+        }
+      ]
+    ]
+  }
+}

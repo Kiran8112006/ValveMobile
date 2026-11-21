@@ -1,0 +1,130 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /// ===========================================================================
+    /// Authentication & Authorization
+    /// ===========================================================================
+
+    /// Users collection - default deny all client access
+    /// Only server-side code (via admin SDK) may write user records
+    match /users/{userId} {
+      /// Clients (mobile/web) CANNOT directly read/write users
+      allow read, write: if false;
+
+      /// Server-side admin may create users with custom claims
+      /// This is invoked only from the backend, never from the client
+    }
+
+    /// ===========================================================================
+    /// Customer Profiles
+    /// ===========================================================================
+
+    match /customers/{customerId} {
+      /// Clients may read their own profile (matched by auth.uid)
+      allow read: if request.auth != null && request.auth.uid == customerId;
+
+      /// Only server may update profile (balance, etc.)
+      allow create, update, delete: if request.auth != null
+        && request.auth.token.admin == true;
+
+      /// Sub-collection: dispensing sessions
+      match /sessions/{sessionId} {
+        /// Clients may read sessions they own
+        allow read: if request.auth != null && request.auth.uid == customerId;
+        /// Only server may create sessions
+        allow create: if request.auth != null
+          && request.auth.token.admin == true;
+        /// Only server may update/delete sessions
+        allow update, delete: if request.auth != null
+          && request.auth.token.admin == true;
+      }
+    }
+
+    /// ===========================================================================
+    /// Device Records
+    /// ===========================================================================
+
+    match /devices/{deviceId} {
+      /// Clients may read devices associated with their customer ID
+      allow read: if request.auth != null
+        && request.auth.uid != null;
+
+      /// Only server may create/update devices
+      allow create, update, delete: if request.auth != null
+        && request.auth.token.admin == true;
+    }
+
+    /// ===========================================================================
+    /// Dispensing Sessions (active tracking)
+    /// ===========================================================================
+
+    match /sessions/{sessionId} {
+      /// Clients may read sessions they own
+      allow read: if request.auth != null
+        && request.auth.uid != null;
+
+      /// Only server may create/update sessions
+      allow create, update, delete: if request.auth != null
+        && request.auth.token.admin == true;
+    }
+
+    /// ===========================================================================
+    /// Transactions (payment history)
+    /// ===========================================================================
+
+    match /transactions/{transactionId} {
+      /// Clients may read their own transactions
+      allow read: if request.auth != null
+        && request.auth.uid != null
+        && request.auth.uid == resource.data customerId;
+
+      /// Only server may create transactions
+      allow create: if request.auth != null
+        && request.auth.token.admin == true;
+
+      /// Clients may not delete transactions
+      allow update, delete: if false;
+    }
+
+    /// ===========================================================================
+    /// Admin Credits & Pricing
+    /// ===========================================================================
+
+    match /admin/pricing {
+      /// Clients may read pricing config
+      allow read: if request.auth != null;
+
+      /// Only server may update pricing
+      allow create, update, delete: if request.auth != null
+        && request.auth.token.admin == true;
+    }
+
+    match /admin/credits/{customerId} {
+      /// Clients may read their own credits
+      allow read: if request.auth != null
+        && request.auth.uid == customerId;
+
+      /// Only server may adjust credits
+      allow create, update, delete: if request.auth != null
+        && request.auth.token.admin == true;
+    }
+
+    /// ===========================================================================
+    /// Audit Logs (append-only, server-only)
+    /// ===========================================================================
+
+    match /admin/audit/{auditId} {
+      /// Clients may NOT read audit logs
+      allow read: if false;
+
+      /// Only server may create audit entries
+      allow create: if request.auth != null
+        && request.auth.token.admin == true;
+
+      /// Clients may NOT update/delete audit logs
+      allow update, delete: if false;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+apply plugin: 'com.android.library'
+
+group = 'expo.modules.valvewifi'
+version = '1.0.0'
+
+def expoModulesCorePlugin = new File(project(":expo-modules-core").projectDir.absolutePath, "ExpoModulesCorePlugin.gradle")
+apply from: expoModulesCorePlugin
+applyKotlinExpoModulesCorePlugin()
+useExpoPublishing()
+
+android {
+  namespace "expo.modules.valvewifi"
+  compileSdkVersion 37
+  defaultConfig {
+    versionCode 1
+    versionName "1.0.0"
+    minSdkVersion 24
+  }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
+  kotlinOptions {
+    jvmTarget = "17"
+  }
+  lintOptions {
+    abortOnError false
+  }
+}
+
+dependencies {
+  implementation project(':expo-modules-core')
+}

@@ -1,0 +1,42 @@
+{
+  "name": "@valve/mobile",
+  "version": "1.0.0",
+  "private": true,
+  "main": "expo-router/entry",
+  "scripts": {
+    "start": "expo start --dev-client",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "prebuild": "expo prebuild",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"app/**/*.{ts,tsx}\" \"components/**/*.{ts,tsx}\" \"hooks/**/*.{ts,tsx}\" \"services/**/*.ts\" \"contexts/**/*.tsx\"",
+    "export:android": "expo export --platform android"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "3.1.1",
+    "expo": "~58.0.26",
+    "expo-camera": "~58.0.14",
+    "expo-constants": "~58.0.0",
+    "expo-dev-client": "~58.0.0",
+    "expo-linking": "~58.0.0",
+    "expo-router": "~58.0.32",
+    "expo-secure-store": "~58.0.0",
+    "expo-status-bar": "~58.0.0",
+    "firebase": "^13.4.0",
+    "lucide-react-native": "^0.545.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-native": "0.88.1",
+    "react-native-razorpay": "3.0.0",
+    "react-native-safe-area-context": "~5.11.1",
+    "react-native-screens": "~4.30.0",
+    "react-native-svg": "~15.16.1",
+    "react-native-web": "~0.21.0"
+  },
+  "devDependencies": {
+    "@types/react": "~19.3.0",
+    "eslint": "^9.20.0",
+    "eslint-config-expo": "~58.0.4",
+    "typescript": "~5.9.0"
+  }
+}

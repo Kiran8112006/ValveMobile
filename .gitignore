@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+.pnpm-lock.yaml
+yarn.lock
+package-lock.json
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Production builds
+/dist
+/.next
+/out
+
+# Typescript
+*.tsbuildinfo
+*.tsbuildinfo
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Firebase
+!.firebaserc
+firebase tokens/
+firebase.json
+.firebasedata/
+
+# Firebase Admin service account key — NEVER commit this
+apps/backend/secrets/*.json
+
+# Docker
+.dockerinit
+
+# Local dev server
+.local/
+
+# Artifacts
+/.freebuff/
+
+# Images and assets (if generated)
+/public/images/generated/*
