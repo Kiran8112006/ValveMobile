@@ -14,6 +14,7 @@
     "mobile:typecheck": "npm --prefix apps/mobile run typecheck",
     "mobile:lint": "npm --prefix apps/mobile run lint",
     "admin:promote": "node scripts/promote-admin.mjs",
+    "qr:generate": "node scripts/generate-qr.mjs",
     "lint": "npm run backend:lint && npm run mobile:lint",
     "test": "npm run backend:test"
   }

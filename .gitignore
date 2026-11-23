@@ -42,6 +42,14 @@ apps/backend/secrets/*.json
 
 # Artifacts
 /.freebuff/
+*.apk
+*.aab
+.kotlin/
+.expo/
+build/
+**/build/
+android/.gradle/
+scripts/device-qr.html
 
 # Images and assets (if generated)
 /public/images/generated/*
